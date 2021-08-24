@@ -77,7 +77,9 @@ class IP(
                 payloadLayer.chksum = layer4Chksum(payloadLayer.bin())
             }
             is UDP -> {
-
+                frag = 0
+                proto = 17
+                payloadLayer.chksum = layer4Chksum(payloadLayer.bin())
             }
         }
     }

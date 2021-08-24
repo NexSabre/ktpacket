@@ -27,7 +27,6 @@ class UDP(
 
     override fun postBuild() {
         len = lengthToRightEnd()
-        chksum = layerChksum()
     }
 
     private fun layerChksum(): Int {

@@ -2,6 +2,7 @@ package templates
 
 import BasePacket
 import fields.*
+import helpers.toBin
 import helpers.utils.calculateChksum
 
 
@@ -60,13 +61,13 @@ class IP(
         return calculateChksum(binaryValue)
     }
 
-    private fun layer4Chksum(tcpBinary: String): Int {
+    private fun layer4Chksum(nextLayerBinary: BasePacket): Int {
         val pseudoLayer = this.field("src")?.bin() +
                 this.field("dst")?.bin() +
-                this.field("len")?.bin() +
+                nextLayerBinary.headerLengthInBytes().toLong().toBin(16) +
                 "00000000" +
                 this.field("proto")?.bin()
-        return calculateChksum(pseudoLayer + tcpBinary)
+        return calculateChksum(pseudoLayer + nextLayerBinary.bin())
     }
 
     override fun bindLayers(payloadLayer: BasePacket) {
@@ -74,9 +75,13 @@ class IP(
             is TCP -> {
                 frag = 0
                 proto = 6
-                payloadLayer.chksum = layer4Chksum(payloadLayer.bin())
+                payloadLayer.chksum = layer4Chksum(payloadLayer)
+            }
+            is UDP -> {
+                frag = 0
+                proto = 17
+                payloadLayer.chksum = layer4Chksum(payloadLayer)
             }
         }
     }
-
 }

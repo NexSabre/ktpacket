@@ -18,32 +18,14 @@ class UDP(
 
     override fun fieldsDesc(): List<Field> {
         return listOf(
-            ShortField("dport", dport),
             ShortField("sport", sport),
+            ShortField("dport", dport),
             ShortField("len", len),
-            ShortField("chksum", chksum, 0)
+            ShortField("chksum", chksum)
         )
     }
 
     override fun postBuild() {
         len = lengthToRightEnd()
-    }
-
-    private fun layerChksum(): Int {
-        // DO NOT USE this.bin() it will cause redundancy!!
-        chksum = 0
-        val binaryValue = fieldsDesc().map {
-            it.bin()
-        }.joinToString(separator = "")
-        return calculateChksum(binaryValue)
-    }
-
-    private fun layer4Chksum(tcpBinary: String): Int {
-        val pseudoLayer = this.field("src")?.bin() +
-                this.field("dst")?.bin() +
-                this.field("len")?.bin() +
-                "00000000" +
-                this.field("proto")?.bin()
-        return calculateChksum(pseudoLayer + tcpBinary)
     }
 }

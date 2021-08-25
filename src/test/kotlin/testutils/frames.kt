@@ -1,9 +1,6 @@
 package testutils
 
 import org.junit.Test
-import templates.Ether
-import templates.IP
-import templates.UDP
 import kotlin.test.assertEquals
 
 
@@ -23,6 +20,15 @@ class FramesTest {
         assertEquals(
             "ffffffffffff00000000000008004500001c000100004011fbcf000000007f0000010035003500088073",
             simpleUDFrame.hex()
+        )
+    }
+
+    @Test
+    fun `Test simple ip in ip packet`() {
+        val simpleIPinIPFrame = simpleIPinIPPakcet()
+        assertEquals(
+            "ffffffffffff00000000000008004500003c000100004004fbbc000000007f00000145000028000100004006fbce000000007f00000100140050000000000000000050022000107e0000",
+            simpleIPinIPFrame.hex()
         )
     }
 }

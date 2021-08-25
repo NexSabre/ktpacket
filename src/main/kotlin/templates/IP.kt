@@ -82,6 +82,11 @@ class IP(
                 proto = 17
                 payloadLayer.chksum = layer4Chksum(payloadLayer)
             }
+            is IP -> {
+                frag = 0
+                proto = 4
+                payloadLayer.chksum = layer4Chksum(payloadLayer)
+            }
         }
     }
 }

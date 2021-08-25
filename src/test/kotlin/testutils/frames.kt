@@ -25,13 +25,4 @@ class FramesTest {
             simpleUDFrame.hex()
         )
     }
-
-    @Test
-    fun `Test simple_udp_packet 2 `() {
-        val simpleUDFrame = Ether() / IP() / UDP()
-        assertEquals(
-            "ffffffffffff00000000000008004500001c000100004011fbcf000000007f0000010035003500088073",
-            simpleUDFrame.hex()
-        )
-    }
 }

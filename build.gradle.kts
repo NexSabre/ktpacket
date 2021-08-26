@@ -16,13 +16,15 @@ dependencies {
     implementation("org.junit.jupiter:junit-jupiter:5.7.0")
     testImplementation(kotlin("test-junit"))
     implementation(kotlin("stdlib-jdk8"))
+    implementation("org.pcap4j:pcap4j-core:1.+")
+    implementation("org.pcap4j:pcap4j-packetfactory-static:1.+")
 }
 
 tasks.test {
     useJUnit()
 }
 
-tasks.withType<KotlinCompile>() {
+tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
 

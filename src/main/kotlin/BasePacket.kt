@@ -9,6 +9,13 @@ abstract class BasePacket {
 
     var payload: BasePacket? = null
 
+    fun toByteArray(): ByteArray {
+        /*
+        Convert BasePacket to the ByteArray
+         */
+        return this.bin().toByteArray()
+    }
+
     operator fun div(other: BasePacket): BasePacket {
         /*
         To provide more Pythonic & Scapy approach
@@ -36,7 +43,7 @@ abstract class BasePacket {
     }
 
     fun field(lookupName: String): Field? {
-        return this.fieldsDesc().firstOrNull() {
+        return this.fieldsDesc().firstOrNull {
             it.name == lookupName
         }
     }

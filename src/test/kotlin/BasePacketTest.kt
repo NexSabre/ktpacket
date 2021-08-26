@@ -41,4 +41,9 @@ class BasePacketTest {
             frame.hex()
         )
     }
+
+    @Test
+    fun `Test convert Ether to the ByteArray`() {
+        assert(Ether().toByteArray().isNotEmpty())
+    }
 }

@@ -13,3 +13,7 @@ fun simpleTCPPacket(): BasePacket {
 fun simpleUDPPacket(): BasePacket {
     return Ether() / IP() / UDP()
 }
+
+fun simpleIPinIPPacket(): BasePacket {
+    return Ether() / IP() / IP() / TCP()
+}

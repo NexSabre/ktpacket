@@ -46,4 +46,17 @@ class BasePacketTest {
     fun `Test convert Ether to the ByteArray`() {
         assert(Ether().toByteArray().isNotEmpty())
     }
+
+    @Test
+    fun `Test loadBytes of Ether into Ether packet`() {
+        val sampleEther = Ether(src = "11:11:11:11:11:11")
+        val loadedEther = Ether().loadByteArray(
+            sampleEther.toByteArray()
+        )
+        assertEquals(
+            sampleEther,
+            loadedEther,
+            "Objects should be equal"
+        )
+    }
 }

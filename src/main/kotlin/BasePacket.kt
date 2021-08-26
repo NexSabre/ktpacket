@@ -16,6 +16,11 @@ abstract class BasePacket {
         return this.bin().toByteArray()
     }
 
+    fun loadByteArray(byteArray: ByteArray): BasePacket {
+//        this.fieldsDesc()
+        return this
+    }
+
     operator fun div(other: BasePacket): BasePacket {
         /*
         To provide more Pythonic & Scapy approach

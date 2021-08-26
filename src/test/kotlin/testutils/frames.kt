@@ -25,7 +25,7 @@ class FramesTest {
 
     @Test
     fun `Test simple ip in ip packet`() {
-        val simpleIPinIPFrame = simpleIPinIPPakcet()
+        val simpleIPinIPFrame = simpleIPinIPPacket()
         assertEquals(
             "ffffffffffff00000000000008004500003c000100004004fbbc000000007f00000145000028000100004006fbce000000007f00000100140050000000000000000050022000107e0000",
             simpleIPinIPFrame.hex()

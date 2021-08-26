@@ -14,6 +14,6 @@ fun simpleUDPPacket(): BasePacket {
     return Ether() / IP() / UDP()
 }
 
-fun simpleIPinIPPakcet(): BasePacket {
+fun simpleIPinIPPacket(): BasePacket {
     return Ether() / IP() / IP() / TCP()
 }

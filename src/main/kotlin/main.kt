@@ -15,7 +15,7 @@ fun main(args: Array<String>) {
 //    println(ether.bin())
 //    println(ether.hex())
 
-    val socket = DatagramSocket(8888)
+    val socket = DatagramSocket(8898)
     socket.broadcast = true
     println(ether.bin())
     println(ether.bin().toByteArray())

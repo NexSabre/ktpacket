@@ -53,6 +53,18 @@ abstract class BasePacket {
         }
     }
 
+    fun getAttr(name: String): Any {
+        return this.javaClass.getField(name).get(this)
+    }
+
+    fun setAttr(name: String, value: Any) {
+        this.javaClass.getField(name).set(this, value)
+    }
+
+    fun listAttr(): List<String> {
+        return this.fieldsDesc().map { it.name }
+    }
+
     fun get(lookupName: String): BasePacket? {
         /*
         Try to get specific element from the frame.

@@ -53,16 +53,18 @@ abstract class BasePacket {
         }
     }
 
-    fun getAttr(name: String): Any {
+    private fun getAttr(name: String): Any {
         return this.javaClass.getField(name).get(this)
     }
 
-    fun setAttr(name: String, value: Any) {
+    private fun setAttr(name: String, value: Any) {
         this.javaClass.getField(name).set(this, value)
     }
 
-    fun listAttr(): List<String> {
-        return this.fieldsDesc().map { it.name }
+    private fun listAttr(): List<Pair<String, Int>> {
+        return this.fieldsDesc().map {
+            Pair(it.name, it.size)
+        }
     }
 
     fun get(lookupName: String): BasePacket? {

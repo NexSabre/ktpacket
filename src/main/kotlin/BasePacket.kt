@@ -1,6 +1,7 @@
 import fields.Field
 import helpers.binaryStringToHexString
 import helpers.toBin
+import helpers.toBinList
 
 abstract class BasePacket {
     abstract val name: String
@@ -17,7 +18,17 @@ abstract class BasePacket {
     }
 
     fun loadByteArray(byteArray: ByteArray): BasePacket {
-//        this.fieldsDesc()
+        val frameFields = listAttr()
+        var sum = 0
+        try {
+            frameFields.forEach {
+                this.setAttr(it.first, byteArray.toBin().subSequence(sum, sum + it.second).toString().toInt(radix = 2))
+                sum += it.second
+            }
+        } catch (ex: NoSuchFieldException) {
+            println(ex)
+        }
+
         return this
     }
 
@@ -55,6 +66,10 @@ abstract class BasePacket {
 
     private fun getAttr(name: String): Any {
         return this.javaClass.getField(name).get(this)
+    }
+
+    private fun getAttrType(name: String): Any {
+        return this.javaClass.getField(name).type
     }
 
     private fun setAttr(name: String, value: Any) {
@@ -98,7 +113,7 @@ abstract class BasePacket {
         postBuild()
         val framesHex = arrayListOf<String>()
         framesHex.add(fieldsDesc().joinToString(separator = "") {
-            it.value!!.toBin(it.size)
+            it.value!!.toBinList(it.size)
         })
         if (payload != null) {
             payload!!.postBuild()

@@ -3,13 +3,13 @@ package helpers
 import org.junit.Test
 import kotlin.test.assertEquals
 
-internal class LongExtenionsKtTest {
+internal class LongExtensionsKtTest {
     @Test
     fun toBin() {
         val longValue: Long = 4  // 01000
         assertEquals(
             "0100",
-            longValue.toBin(zfill = 4)
+            longValue.toBinList(zfill = 4)
         )
 
     }

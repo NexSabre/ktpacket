@@ -49,13 +49,13 @@ class BasePacketTest {
 
     @Test
     fun `Test loadBytes of Ether into Ether packet`() {
-        val sampleEther = Ether(src = "11:11:11:11:11:11")
-        val loadedEther = Ether().loadByteArray(
+        val sampleEther = IP(version = 8)
+        val loadedEther = IP().loadByteArray(
             sampleEther.toByteArray()
         )
         assertEquals(
-            sampleEther,
-            loadedEther,
+            sampleEther.hex(),
+            loadedEther.hex(),
             "Objects should be equal"
         )
     }

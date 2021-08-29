@@ -2,13 +2,14 @@ package templates
 
 import BasePacket
 import fields.*
-import helpers.toBin
+import helpers.toBinList
 import helpers.utils.calculateChksum
 
 
 // TODO ihl
 // TODO options
 class IP(
+    @JvmField
     var version: Int = 4,
     var ihl: Int = 5,
     var tos: Int = 0,
@@ -64,7 +65,7 @@ class IP(
     private fun layer4Chksum(nextLayerBinary: BasePacket): Int {
         val pseudoLayer = this.field("src")?.bin() +
                 this.field("dst")?.bin() +
-                nextLayerBinary.headerLengthInBytes().toLong().toBin(16) +
+                nextLayerBinary.headerLengthInBytes().toLong().toBinList(16) +
                 "00000000" +
                 this.field("proto")?.bin()
         return calculateChksum(pseudoLayer + nextLayerBinary.bin())

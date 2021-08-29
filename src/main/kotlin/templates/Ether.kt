@@ -5,9 +5,13 @@ import fields.Field
 import fields.MACField
 import helpers.stringHexToLong
 
+
 class Ether(
+    @JvmField
     var dst: String = "ff:ff:ff:ff:ff:ff",
+    @JvmField
     var src: String = "00:00:00:00:00:00",
+    @JvmField
     var type: String = "0x9000"
 ) : BasePacket() {
     override val name = "Ether"

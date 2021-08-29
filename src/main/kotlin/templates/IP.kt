@@ -11,17 +11,29 @@ import helpers.utils.calculateChksum
 class IP(
     @JvmField
     var version: Int = 4,
+    @JvmField
     var ihl: Int = 5,
+    @JvmField
     var tos: Int = 0,
+    @JvmField
     var len: Int? = 20,
+    @JvmField
     var id: Int = 1,
+    @JvmField
     var flags: Int = 0,
+    @JvmField
     var frag: Int = 0,
+    @JvmField
     var ttl: Int = 64,
+    @JvmField
     var proto: Int = 0,
+    @JvmField
     var chksum: Int = 0,
+    @JvmField
     var src: String = "0.0.0.0",
+    @JvmField
     var dst: String = "127.0.0.1",
+    @JvmField
     var options: Int = 0,
 ) : BasePacket() {
     override val name = "IP"

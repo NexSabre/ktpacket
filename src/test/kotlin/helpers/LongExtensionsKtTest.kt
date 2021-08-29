@@ -9,7 +9,7 @@ internal class LongExtensionsKtTest {
         val longValue: Long = 4  // 01000
         assertEquals(
             "0100",
-            longValue.toBinList(zfill = 4)
+            longValue.toBin(zfill = 4)
         )
 
     }

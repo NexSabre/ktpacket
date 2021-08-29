@@ -1,6 +1,6 @@
 package helpers
 
-fun Long.toBinList(zfill: Int = 0): String {
+fun Long.toBin(zfill: Int = 0): String {
     if (zfill == 0) {
         return this.toString(2)
     }

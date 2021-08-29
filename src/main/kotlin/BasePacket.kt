@@ -1,7 +1,6 @@
 import fields.Field
 import helpers.binaryStringToHexString
 import helpers.toBin
-import helpers.toBinList
 
 abstract class BasePacket {
     abstract val name: String
@@ -113,7 +112,7 @@ abstract class BasePacket {
         postBuild()
         val framesHex = arrayListOf<String>()
         framesHex.add(fieldsDesc().joinToString(separator = "") {
-            it.value!!.toBinList(it.size)
+            it.value!!.toBin(it.size)
         })
         if (payload != null) {
             payload!!.postBuild()

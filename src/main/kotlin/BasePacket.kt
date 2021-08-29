@@ -26,6 +26,9 @@ abstract class BasePacket {
             }
         } catch (ex: NoSuchFieldException) {
             println(ex)
+        } catch (ex: IllegalArgumentException) {
+            // TODO correct for string values like ip or mac address
+            println(ex)
         }
 
         return this

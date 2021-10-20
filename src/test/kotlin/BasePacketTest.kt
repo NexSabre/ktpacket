@@ -48,15 +48,28 @@ class BasePacketTest {
     }
 
     @Test
-    fun `Test loadBytes of Ether into Ether packet`() {
-        val sampleEther = IP(version = 8)
-        val loadedEther = IP().loadByteArray(
+    fun `Test loadBytes of IP into IP packet`() {
+        val sampleIP = IP(version = 8)
+        val loadedIP = IP().loadByteArray(
+            sampleIP.toByteArray()
+        )
+        assertEquals(
+            sampleIP.hex(),
+            loadedIP.hex(),
+            "Objects should be equal"
+        )
+    }
+
+    @Test
+    fun `Test loadBytes of Ether into Ether packet with changed mac address`() {
+        val sampleEther = Ether(dst="11:11:11:11:11:11")
+        val loadedEther = Ether().loadByteArray(
             sampleEther.toByteArray()
         )
         assertEquals(
             sampleEther.hex(),
             loadedEther.hex(),
-            "Objects should be equal"
+        "Objects should be equal"
         )
     }
 }

@@ -22,4 +22,13 @@ internal class LongExtensionsKtTest {
             longValue.toHex(2)
         )
     }
+
+    @Test
+    fun toMac() {
+        val longValue: Long = 12
+        assertEquals(
+            "00:00:00:00:00:0C",
+            longValue.toMac()
+        )
+    }
 }

@@ -8,25 +8,25 @@ import helpers.stringHexToLong
 
 class Ether(
     @JvmField
-    var dst: String = "ff:ff:ff:ff:ff:ff",
+    var dst: Long = MACField(name="dst", value="ff:ff:ff:ff:ff:ff").toLong(),
     @JvmField
-    var src: String = "00:00:00:00:00:00",
+    var src: Long = MACField(name="src", value="00:00:00:00:00:00").toLong(),
     @JvmField
-    var type: String = "0x9000"
+    var type: Int = "0x9000".stringHexToLong().toInt()
 ) : BasePacket() {
     override val name = "Ether"
     override val alternativeName: String = "Ethernet"
 
     override fun fieldsDesc() = listOf(
-        MACField("dst", dst),
-        MACField("src", src),
-        Field("type", type.stringHexToLong(), 9000, 16),
+        MACField("dst", dst.toString()),
+        MACField("src", src.toString()),
+        Field("type", type?.toString().toLong(), 9000, 16),
     )
 
     override fun bindLayers(payloadLayer: BasePacket) {
         when (payloadLayer) {
             is IP -> {
-                type = "0x800"
+                type = "0x800".stringHexToLong().toInt()
             }
         }
     }

@@ -19,18 +19,22 @@ abstract class BasePacket {
     fun loadByteArray(byteArray: ByteArray): BasePacket {
         val frameFields = listAttr()
         var sum = 0
-        try {
-            frameFields.forEach {
-                this.setAttr(it.first, byteArray.toBin().subSequence(sum, sum + it.second).toString().toInt(radix = 2))
-                sum += it.second
+        frameFields.forEach {
+            val byteArrayString = byteArray.toBin().subSequence(sum, sum + it.second).toString()
+            var numberFromByteArray: Any
+            try {
+                numberFromByteArray = byteArrayString.toInt(radix = 2)
+            } catch (ex: NumberFormatException) {
+                numberFromByteArray = byteArrayString.toLong(radix = 2)
             }
-        } catch (ex: NoSuchFieldException) {
-            println(ex)
-        } catch (ex: IllegalArgumentException) {
-            // TODO correct for string values like ip or mac address
-            println(ex)
-        }
 
+            try {
+                this.setAttr(it.first!!, numberFromByteArray)
+            } catch (ex: IllegalArgumentException) {
+                println(ex)
+            }
+            sum += it.second
+        }
         return this
     }
 
@@ -78,7 +82,7 @@ abstract class BasePacket {
         this.javaClass.getField(name).set(this, value)
     }
 
-    private fun listAttr(): List<Pair<String, Int>> {
+    private fun listAttr(): List<Pair<String?, Int>> {
         return this.fieldsDesc().map {
             Pair(it.name, it.size)
         }

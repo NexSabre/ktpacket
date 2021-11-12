@@ -1,3 +1,5 @@
+import fields.MACAddr
+import fields.MACField
 import org.junit.Test
 import templates.Ether
 import templates.IP
@@ -9,7 +11,7 @@ class BasePacketTest {
 
     @Test
     fun `Test get() on example - existing IP`() {
-        val frame = Ether(mac, mac, "0x9000").add(IP())
+        val frame = Ether(MACAddr(mac), MACAddr(mac), 0x9000).add(IP())
         val ip: BasePacket? = frame.get("IP")
         assert(ip != null)
         assertEquals(
@@ -21,21 +23,21 @@ class BasePacketTest {
 
     @Test
     fun `Test get() on example - missing TCP`() {
-        val frame = Ether(mac, mac, "0x9000").add(IP())
+        val frame = Ether(MACAddr(mac), MACAddr(mac), 0x9000).add(IP())
         val tcp: BasePacket? = frame.get("TCP")
         assert(tcp == null)
     }
 
     @Test
     fun `Test show function`() {
-        val frame = Ether(mac, mac, "0x9000").add(IP()).add(TCP())
+        val frame = Ether(MACAddr(mac), MACAddr(mac), 0x9000).add(IP()).add(TCP())
 
         frame.show()
     }
 
     @Test
     fun `Test div operator`() {
-        val frame = Ether(mac, mac, "0x9000") / IP() / TCP()
+        val frame = Ether(MACAddr(mac), MACAddr(mac), 0x9000) / IP() / TCP()
         assertEquals(
             "000000000000000000000000080045000028000100004006fbce000000007f00000100140050000000000000000050022000107e0000",
             frame.hex()
@@ -62,7 +64,7 @@ class BasePacketTest {
 
     @Test
     fun `Test loadBytes of Ether into Ether packet with changed mac address`() {
-        val sampleEther = Ether(dst="11:11:11:11:11:11")
+        val sampleEther = Ether(dst=MACAddr("ff:ff:ff:ff:ff:ff"))
         val loadedEther = Ether().loadByteArray(
             sampleEther.toByteArray()
         )

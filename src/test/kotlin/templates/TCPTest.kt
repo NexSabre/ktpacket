@@ -60,7 +60,7 @@ class TCPTest {
         )
 
         assertHexEqual(
-            Ether(type = "0x800").add(IP(frag = 0, proto = 6)).add(TCP()),
+            Ether(type = 0x800).add(IP(frag = 0, proto = 6)).add(TCP()),
             frame
         )
     }

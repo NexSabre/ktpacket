@@ -63,7 +63,7 @@ class BasePacketTest {
 
     @Test
     fun `Test loadBytes of Ether into Ether packet with changed mac address`() {
-        val sampleEther = Ether(dst=macAddr("ff:ff:ff:ff:ff:ff"))
+        val sampleEther = Ether(dst=macAddr("ff:ff:ff:ff:ff:ff"), type=0x8888)
         val loadedEther = Ether().loadByteArray(
             sampleEther.toByteArray()
         )

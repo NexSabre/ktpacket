@@ -4,7 +4,7 @@ import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
-internal class FieldKtTest {
+internal class FieldTest {
     @Test
     fun `Create new field - Field`() {
         val newField = Field(
@@ -110,7 +110,7 @@ internal class FieldKtTest {
 
     @Test
     fun `Check ipAddr`() {
-        val ipAddress =  ipAddr("127.0.0.1")
+        val ipAddress = ipAddr("127.0.0.1")
         assertEquals(
             2130706433,
             ipAddress

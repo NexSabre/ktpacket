@@ -9,7 +9,7 @@ class UDP(
     var dport: Int = 53,
     var len: Int = 0,
     var chksum: Int = 0,
-): BasePacket() {
+) : BasePacket() {
     override val name: String = "UDP"
     override val alternativeName: String = this.name
 

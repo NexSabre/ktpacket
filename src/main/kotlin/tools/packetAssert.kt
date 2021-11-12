@@ -30,7 +30,6 @@ fun diffDetailed(first: BasePacket, second: BasePacket): Boolean {
     return true
 }
 
-
 fun checkTypes(first: BasePacket, second: BasePacket): Boolean {
     fun getLayers(packet: BasePacket): ArrayList<String> {
         val layers = arrayListOf<String>()

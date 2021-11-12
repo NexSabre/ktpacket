@@ -10,7 +10,7 @@ jobs:
         with:
           java-version: '11'
       - run: curl -sSLO https://github.com/pinterest/ktlint/releases/download/0.43.0/ktlint && chmod a+x ktlint &&  sudo mv ktlint /usr/local/bin/
-      - run: ktlint
+      - run: ktlint "src/**/*.kt"
   test:
     runs-on: ubuntu-latest
     steps:

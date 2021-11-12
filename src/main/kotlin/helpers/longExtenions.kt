@@ -1,7 +1,7 @@
 package helpers
 
 fun Long.toMac(): String {
-    return this.toHex(12).windowed(2,2).joinToString(separator = ":").toUpperCase()
+    return this.toHex(12).windowed(2, 2).joinToString(separator = ":").toUpperCase()
 }
 
 fun Long.toBin(zfill: Int = 0): String {

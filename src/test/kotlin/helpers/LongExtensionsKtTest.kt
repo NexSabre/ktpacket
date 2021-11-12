@@ -6,12 +6,11 @@ import kotlin.test.assertEquals
 internal class LongExtensionsKtTest {
     @Test
     fun toBin() {
-        val longValue: Long = 4  // 01000
+        val longValue: Long = 4 // 01000
         assertEquals(
             "0100",
             longValue.toBin(zfill = 4)
         )
-
     }
 
     @Test

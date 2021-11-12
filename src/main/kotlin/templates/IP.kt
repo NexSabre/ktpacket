@@ -5,7 +5,6 @@ import fields.*
 import helpers.toBin
 import helpers.utils.calculateChksum
 
-
 // TODO ihl
 // TODO options
 class IP(
@@ -76,10 +75,10 @@ class IP(
 
     private fun layer4Chksum(nextLayerBinary: BasePacket): Int {
         val pseudoLayer = this.field("src")?.bin() +
-                this.field("dst")?.bin() +
-                nextLayerBinary.headerLengthInBytes().toLong().toBin(16) +
-                "00000000" +
-                this.field("proto")?.bin()
+            this.field("dst")?.bin() +
+            nextLayerBinary.headerLengthInBytes().toLong().toBin(16) +
+            "00000000" +
+            this.field("proto")?.bin()
         return calculateChksum(pseudoLayer + nextLayerBinary.bin())
     }
 

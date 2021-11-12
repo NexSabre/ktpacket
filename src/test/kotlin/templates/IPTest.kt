@@ -6,7 +6,6 @@ import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 
-
 class IPTest {
     private val mac = "00:00:00:00:00:00"
     private lateinit var ip: IP
@@ -44,7 +43,6 @@ class IPTest {
             frame.hex(),
             "hex should be equal"
         )
-
     }
 
     @Test
@@ -52,7 +50,8 @@ class IPTest {
         val newIP = IP()
         newIP.postBuild()
 
-        assertEquals(64488,
+        assertEquals(
+            64488,
             newIP.fieldsDesc().first { it.name == "chksum" }.value,
             "chksum in fieldDesc should be equal"
         )
@@ -61,8 +60,6 @@ class IPTest {
             newIP.chksum,
             "chksum value in property should be equal"
         )
-
-
     }
 
     @Test

@@ -3,7 +3,6 @@ package testutils
 import org.junit.Test
 import kotlin.test.assertEquals
 
-
 class FramesTest {
     @Test
     fun `Test simple_tcp_packet`() {

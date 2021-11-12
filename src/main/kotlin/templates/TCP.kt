@@ -6,7 +6,6 @@ import fields.Field
 import fields.IntField
 import fields.ShortField
 
-
 // TODO dataofs
 // TODO chksum
 // TODO options

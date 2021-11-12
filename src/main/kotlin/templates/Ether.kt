@@ -2,10 +2,9 @@ package templates
 
 import BasePacket
 import fields.Field
-import fields.macAddr
 import fields.MACField
+import fields.macAddr
 import helpers.stringHexToLong
-
 
 class Ether(
     @JvmField

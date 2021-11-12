@@ -4,8 +4,6 @@ import org.junit.Test
 import templates.Ether
 import templates.IP
 import templates.TCP
-import kotlin.test.assertEquals
-import kotlin.test.assertNotEquals
 
 class AssertTest {
 
@@ -38,7 +36,6 @@ class AssertTest {
 
     @Test
     fun `Test diffDetailed`() {
-
     }
 
     @Test

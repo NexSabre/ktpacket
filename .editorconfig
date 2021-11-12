@@ -1,0 +1,7 @@
+[*.{kt,kts}]
+# noinspection EditorConfigKeyCorrectness
+disabled_rules=no-wildcard-imports
+
+[**/test/**.kt]
+# noinspection EditorConfigKeyCorrectness
+ktlint_ignore_back_ticked_identifier=true

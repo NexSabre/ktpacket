@@ -118,9 +118,11 @@ abstract class BasePacket {
     private fun calculateHeader(): String {
         postBuild()
         val framesHex = arrayListOf<String>()
-        framesHex.add(fieldsDesc().joinToString(separator = "") {
-            it.value!!.toBin(it.size)
-        })
+        framesHex.add(
+            fieldsDesc().joinToString(separator = "") {
+                it.value!!.toBin(it.size)
+            }
+        )
         if (payload != null) {
             payload!!.postBuild()
             framesHex.add(payload!!.bin())
@@ -161,12 +163,12 @@ abstract class BasePacket {
 
     fun show(indent: Int = 0) {
         val indention = "\t".repeat(indent)
-        println("${indention}### [${name}] ###")
+        println("$indention### [$name] ###")
         fieldsDesc().forEach {
             println("${indention}${it.name}:\t${it.value}")
         }
         if (this.payload != null) {
-            println("${indention}>> payload: ")
+            println("$indention>> payload: ")
             this.payload!!.show(indent + 1)
         }
     }

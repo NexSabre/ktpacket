@@ -30,9 +30,9 @@ class IP(
     @JvmField
     var chksum: Int = 0,
     @JvmField
-    var src: String = "0.0.0.0",
+    var src: Long = ipAddr("0.0.0.0"),
     @JvmField
-    var dst: String = "127.0.0.1",
+    var dst: Long = ipAddr("127.0.0.1"),
     @JvmField
     var options: Int = 0,
 ) : BasePacket() {

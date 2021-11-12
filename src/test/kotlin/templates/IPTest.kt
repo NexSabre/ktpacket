@@ -1,6 +1,6 @@
 package templates
 
-import fields.MACAddr
+import fields.macAddr
 import org.junit.Before
 import org.junit.Test
 import kotlin.test.assertEquals
@@ -36,7 +36,7 @@ class IPTest {
 
     @Test
     fun `Build Ether - IP`() {
-        val ether = Ether(MACAddr(mac), MACAddr(mac), 0x8000)
+        val ether = Ether(macAddr(mac), macAddr(mac), 0x8000)
         val frame = ether.add(IP())
 
         assertEquals(
@@ -75,7 +75,7 @@ class IPTest {
 
     @Test
     fun `Verify length of the Ether - IP packet`() {
-        val ether = Ether(MACAddr(mac), MACAddr(mac), 0x9000)
+        val ether = Ether(macAddr(mac), macAddr(mac), 0x9000)
         val frame = ether.add(IP())
 
         assertEquals(
@@ -92,7 +92,7 @@ class IPTest {
 
     @Test
     fun `Verify length of the Ether - IP - TCP packet`() {
-        val ether = Ether(MACAddr(mac), MACAddr(mac), 0x9000)
+        val ether = Ether(macAddr(mac), macAddr(mac), 0x9000)
         val frame = ether.add(IP()).add(TCP())
 
         assertEquals(

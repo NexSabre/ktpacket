@@ -24,7 +24,7 @@ class TCPTest {
         val frameIP = frame.get("IP") as IP?
 
         assertEquals(
-            "0x800",
+            0x800,
             frameEther?.type,
             "Type should be set to 0x800"
         )

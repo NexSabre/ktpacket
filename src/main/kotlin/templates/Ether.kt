@@ -2,15 +2,16 @@ package templates
 
 import BasePacket
 import fields.Field
+import fields.MACAddr
 import fields.MACField
 import helpers.stringHexToLong
 
 
 class Ether(
     @JvmField
-    var dst: Long = MACField(name="dst", value="ff:ff:ff:ff:ff:ff").toLong(),
+    var dst: Long = MACAddr("ff:ff:ff:ff:ff:ff"),
     @JvmField
-    var src: Long = MACField(name="src", value="00:00:00:00:00:00").toLong(),
+    var src: Long = MACAddr("00:00:00:00:00:00"),
     @JvmField
     var type: Int = "0x9000".stringHexToLong().toInt()
 ) : BasePacket() {
@@ -18,8 +19,8 @@ class Ether(
     override val alternativeName: String = "Ethernet"
 
     override fun fieldsDesc() = listOf(
-        MACField("dst", dst.toString()),
-        MACField("src", src.toString()),
+        MACField("dst", dst),
+        MACField("src", src),
         Field("type", type?.toString().toLong(), 9000, 16),
     )
 

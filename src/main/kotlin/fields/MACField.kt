@@ -2,8 +2,8 @@ package fields
 
 import helpers.macToLong
 
-class MACField(value: String = "00:00:00:00:00:00", name: String?) :
-    Field(name, value.macToLong(), "00:00:00:00:00:00".macToLong(), 48) {
+class MACField(name: String?, value: Long = 0) :
+    Field(name, value, 0, 48) {
         fun toLong(): Long {
             return value!!
         }

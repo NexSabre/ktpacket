@@ -1,9 +1,8 @@
 package templates
 
+import fields.macAddr
 import org.junit.Before
 import org.junit.Test
-import templates.Ether
-import kotlin.io.path.createTempDirectory
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 
@@ -13,7 +12,7 @@ internal class EtherTest {
 
     @Before
     fun setUp() {
-        ether = Ether(src = mac, dst = mac)
+        ether = Ether(macAddr(mac), macAddr(mac))
     }
 
     @Test
@@ -46,7 +45,7 @@ internal class EtherTest {
 
     @Test
     fun `Add Ether to Ether`() {
-        val innerEther = Ether(mac, mac, "0x8000")
+        val innerEther = Ether(macAddr(mac), macAddr(mac), 0x8000)
         ether.add(
             innerEther
         )
@@ -72,8 +71,8 @@ internal class EtherTest {
 
     @Test
     fun `Add Ether to Ether, two times`() {
-        val innerEther = Ether(mac, mac, "0x8000")
-        val innerEther2 = Ether(mac, mac, "0x8000")
+        val innerEther = Ether(macAddr(mac), macAddr(mac), 0x8000)
+        val innerEther2 = Ether(macAddr(mac), macAddr(mac), 0x8000)
         ether.add(
             innerEther
         )
@@ -89,9 +88,9 @@ internal class EtherTest {
 
     @Test
     fun `Change type after initialization`(){
-        val ether = Ether(mac, mac, "0x8000")
+        val ether = Ether(macAddr(mac), macAddr(mac), 0x8000)
         val etherHex = ether.hex()
-        ether.type = "0x9000"
+        ether.type = 0x9000
         assertNotEquals(
             etherHex,
             ether.hex(),

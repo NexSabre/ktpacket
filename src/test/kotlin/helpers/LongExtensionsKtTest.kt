@@ -3,7 +3,7 @@ package helpers
 import org.junit.Test
 import kotlin.test.assertEquals
 
-internal class LongExtenionsKtTest {
+internal class LongExtensionsKtTest {
     @Test
     fun toBin() {
         val longValue: Long = 4  // 01000
@@ -20,6 +20,15 @@ internal class LongExtenionsKtTest {
         assertEquals(
             "04",
             longValue.toHex(2)
+        )
+    }
+
+    @Test
+    fun toMac() {
+        val longValue: Long = 12
+        assertEquals(
+            "00:00:00:00:00:0C",
+            longValue.toMac()
         )
     }
 }

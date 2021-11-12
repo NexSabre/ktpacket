@@ -2,6 +2,7 @@ package fields
 
 import org.junit.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 
 internal class FieldKtTest {
     @Test
@@ -88,6 +89,31 @@ internal class FieldKtTest {
         assertEquals(
             "04",
             newField.hex()
+        )
+    }
+
+    @Test
+    fun `Check MACAddr`() {
+        val macAddress = macAddr("aa:bb:cc:aa:bb:cc")
+        assertEquals(
+            187723569347532,
+            macAddress
+        )
+    }
+
+    @Test
+    fun `Check MACAddr -- Negative -- Bad MACAddress`() {
+        assertFailsWith<NumberFormatException>(
+            block = { macAddr("aa:bb:ccaa:bb:cc") }
+        )
+    }
+
+    @Test
+    fun `Check ipAddr`() {
+        val ipAddress =  ipAddr("127.0.0.1")
+        assertEquals(
+            2130706433,
+            ipAddress
         )
     }
 }

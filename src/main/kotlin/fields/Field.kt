@@ -6,7 +6,7 @@ import kotlin.math.pow
 fun maxValue(size: Int): Long = 2.0.pow(size).toLong() - 1
 
 
-open class Field(val name: String, value: Long? = 0, val defaultValue: Long? = 0, val size: Int = 1) {
+open class Field(val name: String? = "", value: Long? = 0, val defaultValue: Long? = 0, val size: Int = 1) {
     /*
     Base class for fields
      */

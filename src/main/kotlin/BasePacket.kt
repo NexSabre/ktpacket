@@ -16,6 +16,28 @@ abstract class BasePacket {
         return this.bin().toByteArray()
     }
 
+    fun loadByteArray(byteArray: ByteArray): BasePacket {
+        val frameFields = listAttr()
+        var sum = 0
+        frameFields.forEach {
+            val byteArrayString = byteArray.toBin().subSequence(sum, sum + it.second).toString()
+            var numberFromByteArray: Any
+            try {
+                numberFromByteArray = byteArrayString.toInt(radix = 2)
+            } catch (ex: NumberFormatException) {
+                numberFromByteArray = byteArrayString.toLong(radix = 2)
+            }
+
+            try {
+                this.setAttr(it.first!!, numberFromByteArray)
+            } catch (ex: IllegalArgumentException) {
+                println(ex)
+            }
+            sum += it.second
+        }
+        return this
+    }
+
     operator fun div(other: BasePacket): BasePacket {
         /*
         To provide more Pythonic & Scapy approach
@@ -45,6 +67,24 @@ abstract class BasePacket {
     fun field(lookupName: String): Field? {
         return this.fieldsDesc().firstOrNull {
             it.name == lookupName
+        }
+    }
+
+    private fun getAttr(name: String): Any {
+        return this.javaClass.getField(name).get(this)
+    }
+
+    private fun getAttrType(name: String): Any {
+        return this.javaClass.getField(name).type
+    }
+
+    private fun setAttr(name: String, value: Any) {
+        this.javaClass.getField(name).set(this, value)
+    }
+
+    private fun listAttr(): List<Pair<String?, Int>> {
+        return this.fieldsDesc().map {
+            Pair(it.name, it.size)
         }
     }
 

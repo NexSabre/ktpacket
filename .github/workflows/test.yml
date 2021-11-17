@@ -1,7 +1,8 @@
-name: Tests
+name: CI
 on: [ push, pull_request ]
 jobs:
   lint:
+    name: ktlint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

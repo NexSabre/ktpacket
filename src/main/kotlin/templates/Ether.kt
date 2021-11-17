@@ -2,7 +2,6 @@ package templates
 
 import BasePacket
 import fields.IntField
-import fields.LongField
 import fields.MACField
 import fields.utils.macAddr
 

@@ -2,8 +2,8 @@ package templates
 
 import BasePacket
 import fields.BitField
-import fields.LongField
 import fields.IntField
+import fields.LongField
 import fields.ShortField
 
 // TODO dataofs

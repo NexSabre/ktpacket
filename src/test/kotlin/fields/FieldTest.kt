@@ -1,5 +1,6 @@
 package fields
 
+import fields.utils.macAddr
 import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith

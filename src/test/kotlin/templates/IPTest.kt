@@ -1,6 +1,6 @@
 package templates
 
-import fields.macAddr
+import fields.utils.macAddr
 import org.junit.Before
 import org.junit.Test
 import kotlin.test.assertEquals

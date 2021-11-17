@@ -1,7 +1,8 @@
 package templates
 
 import BasePacket
-import fields.Field
+import fields.IntField
+import fields.LongField
 import fields.MACField
 import fields.utils.macAddr
 
@@ -19,7 +20,7 @@ class Ether(
     override fun fieldsDesc() = listOf(
         MACField("dst", dst),
         MACField("src", src),
-        Field("type", type.toLong(), 0x9000, 16),
+        IntField("type", type, 0x9000, 16),
     )
 
     override fun bindLayers(payloadLayer: BasePacket) {

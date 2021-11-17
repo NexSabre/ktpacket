@@ -1,7 +1,7 @@
 package templates
 
 import BasePacket
-import fields.Field
+import fields.LongField
 import fields.ShortField
 
 class UDP(
@@ -17,7 +17,7 @@ class UDP(
     override val name: String = "UDP"
     override val alternativeName: String = this.name
 
-    override fun fieldsDesc(): List<Field> {
+    override fun fieldsDesc(): List<LongField> {
         return listOf(
             ShortField("sport", sport),
             ShortField("dport", dport),

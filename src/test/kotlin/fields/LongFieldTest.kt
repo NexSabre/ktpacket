@@ -1,95 +1,96 @@
 package fields
 
+import fields.utils.ipAddr
 import fields.utils.macAddr
 import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
-internal class FieldTest {
+internal class LongFieldTest {
     @Test
     fun `Create new field - Field`() {
-        val newField = Field(
+        val newLongField = LongField(
             "field",
             3,
             size = 2
         )
         assertEquals(
             3,
-            newField.value,
+            newLongField.value,
         )
 
         assertEquals(
             3,
-            newField.maxSize
+            newLongField.maxSize
         )
     }
 
     @Test
     fun `Create field with null values`() {
-        val newField = Field(
+        val newLongField = LongField(
             "field",
             null,
         )
         assertEquals(
             0,
-            newField.value,
+            newLongField.value,
             "Default value should override value"
         )
 
-        newField.value = 100
+        newLongField.value = 100
         assertEquals(
             1,
-            newField.value,
+            newLongField.value,
             "Cannot set greater value than allow size"
         )
     }
 
     @Test
     fun `Create field with higher than available default value`() {
-        val newField = Field("field", null, defaultValue = 1000, size = 3)
+        val newLongField = LongField("field", null, defaultValue = 1000, size = 3)
         assertEquals(
             7,
-            newField.value,
+            newLongField.value,
             "Default value should be trimmed to 2^3"
         )
     }
 
     @Test
     fun `Create field with null value and null default value`() {
-        val newField = Field(
+        val newLongField = LongField(
             "field",
             null,
             null
         )
         assertEquals(
             null,
-            newField.value
+            newLongField.value
         )
     }
 
     @Test
     fun `Convert field to bin`() {
-        val newField = Field(
+        val newLongField = LongField(
             "field",
             3,
             size = 4
         )
         assertEquals(
             "0011",
-            newField.bin()
+            newLongField.bin()
         )
     }
 
     @Test
     fun `Convert field to hex`() {
-        val newField = Field(
+        val newLongField = LongField(
             "field",
             4,
             size = 4
         )
         assertEquals(
             "04",
-            newField.hex()
+            newLongField.hex()
         )
     }
 

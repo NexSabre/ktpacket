@@ -1,11 +1,11 @@
-import fields.Field
+import fields.LongField
 import helpers.binaryStringToHexString
 import helpers.toBin
 
 abstract class BasePacket {
     abstract val name: String
     abstract val alternativeName: String
-    abstract fun fieldsDesc(): List<Field>
+    abstract fun fieldsDesc(): List<LongField>
 
     var payload: BasePacket? = null
 
@@ -68,7 +68,7 @@ abstract class BasePacket {
         return this
     }
 
-    fun field(lookupName: String): Field? {
+    fun field(lookupName: String): LongField? {
         return this.fieldsDesc().firstOrNull {
             it.name == lookupName
         }

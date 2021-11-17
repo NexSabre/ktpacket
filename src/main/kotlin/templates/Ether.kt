@@ -12,7 +12,7 @@ class Ether(
     @JvmField
     var src: Long = macAddr("00:00:00:00:00:00"),
     @JvmField
-    var type: Int = "0x9000".stringHexToLong().toInt()
+    var type: Int = 0x9000
 ) : BasePacket() {
     override val name = "Ether"
     override val alternativeName: String = "Ethernet"

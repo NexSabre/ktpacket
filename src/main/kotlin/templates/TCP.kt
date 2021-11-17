@@ -10,15 +10,25 @@ import fields.ShortField
 // TODO chksum
 // TODO options
 class TCP(
+    @JvmField
     var sport: Int = 20,
+    @JvmField
     var dport: Int = 80,
+    @JvmField
     var seq: Int = 0,
+    @JvmField
     var ack: Int = 0,
+    @JvmField
     var dataofs: Int = 5,
+    @JvmField
     var reserved: Int = 0,
+    @JvmField
     var flags: Int = 2,
+    @JvmField
     var window: Int = 8192,
+    @JvmField
     var chksum: Int = 0,
+    @JvmField
     var urgptr: Int = 0
 ) : BasePacket() {
     override val name: String = "TCP"

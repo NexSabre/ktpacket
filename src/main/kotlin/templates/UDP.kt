@@ -5,9 +5,13 @@ import fields.Field
 import fields.ShortField
 
 class UDP(
+    @JvmField
     var sport: Int = 53,
+    @JvmField
     var dport: Int = 53,
+    @JvmField
     var len: Int = 0,
+    @JvmField
     var chksum: Int = 0,
 ) : BasePacket() {
     override val name: String = "UDP"

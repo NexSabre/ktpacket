@@ -73,4 +73,16 @@ class BasePacketTest {
             "Objects should be equal"
         )
     }
+
+    @Test
+    fun `Test loadBytes of simpleEtherPacket`() {
+        val simpleTCPPacket = Ether(0, 0, 0x8888) / IP() / TCP(0, 0)
+        val packetSkeleton = Ether() / IP() / TCP()
+
+        assertEquals(
+            simpleTCPPacket.hex(),
+            packetSkeleton.loadByteArray(simpleTCPPacket.toByteArray()).hex(),
+            "Objects should be equal"
+        )
+    }
 }

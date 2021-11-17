@@ -35,6 +35,9 @@ abstract class BasePacket {
             }
             sum += it.second
         }
+        if (this.payload != null) {
+            this.payload!!.loadByteArray(byteArray.copyOfRange(sum, byteArray.size))
+        }
         return this
     }
 

@@ -22,7 +22,7 @@ fun diff(first: BasePacket, second: BasePacket): Pair<Boolean, List<String>> {
 
 // TODO complete this function when print will be available
 fun diffDetailed(first: BasePacket, second: BasePacket): Boolean {
-    if (!checkTypes(first, second)) {
+    if (!checkStructure(first, second)) {
         println("Packets have different structure. Detailed we not available")
         return false
     }
@@ -30,7 +30,10 @@ fun diffDetailed(first: BasePacket, second: BasePacket): Boolean {
     return true
 }
 
-fun checkTypes(first: BasePacket, second: BasePacket): Boolean {
+fun checkStructure(first: BasePacket, second: BasePacket): Boolean {
+    /*
+    Verify that the two frames contain the same elements (but not values).
+     */
     fun getLayers(packet: BasePacket): ArrayList<String> {
         val layers = arrayListOf<String>()
         var currentLayer = packet

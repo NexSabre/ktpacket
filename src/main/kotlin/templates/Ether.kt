@@ -1,10 +1,9 @@
 package templates
 
 import BasePacket
-import fields.Field
+import fields.IntField
 import fields.MACField
-import fields.macAddr
-import helpers.stringHexToLong
+import fields.utils.macAddr
 
 class Ether(
     @JvmField
@@ -20,13 +19,13 @@ class Ether(
     override fun fieldsDesc() = listOf(
         MACField("dst", dst),
         MACField("src", src),
-        Field("type", type.toLong(), 9000, 16),
+        IntField("type", type, 0x9000, 16),
     )
 
     override fun bindLayers(payloadLayer: BasePacket) {
         when (payloadLayer) {
             is IP -> {
-                type = "0x800".stringHexToLong().toInt()
+                type = 0x800
             }
         }
     }

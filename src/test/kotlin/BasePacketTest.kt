@@ -1,4 +1,4 @@
-import fields.macAddr
+import fields.utils.macAddr
 import org.junit.Test
 import templates.Ether
 import templates.IP

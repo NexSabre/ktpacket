@@ -2,8 +2,8 @@ package templates
 
 import BasePacket
 import fields.BitField
-import fields.Field
 import fields.IntField
+import fields.LongField
 import fields.ShortField
 
 // TODO dataofs
@@ -34,7 +34,7 @@ class TCP(
     override val name: String = "TCP"
     override val alternativeName: String = "Transmission Control Protocol"
 
-    override fun fieldsDesc(): List<Field> {
+    override fun fieldsDesc(): List<LongField> {
         return listOf(
             ShortField("sport", sport, 20),
             ShortField("dport", dport, 80),

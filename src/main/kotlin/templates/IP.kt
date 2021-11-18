@@ -2,6 +2,7 @@ package templates
 
 import BasePacket
 import fields.*
+import fields.utils.ipAddr
 import helpers.toBin
 import helpers.utils.calculateChksum
 
@@ -38,7 +39,7 @@ class IP(
     override val name = "IP"
     override val alternativeName: String = "IPv4"
 
-    override fun fieldsDesc(): List<Field> {
+    override fun fieldsDesc(): List<LongField> {
         return listOf(
             BitField("version", version, 4, 4),
             BitField("ihl", ihl, 5, size = 4),

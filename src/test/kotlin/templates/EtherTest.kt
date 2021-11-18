@@ -1,6 +1,6 @@
 package templates
 
-import fields.macAddr
+import fields.utils.macAddr
 import org.junit.Before
 import org.junit.Test
 import kotlin.test.assertEquals
@@ -91,6 +91,7 @@ internal class EtherTest {
         val ether = Ether(macAddr(mac), macAddr(mac), 0x8000)
         val etherHex = ether.hex()
         ether.type = 0x9000
+
         assertNotEquals(
             etherHex,
             ether.hex(),

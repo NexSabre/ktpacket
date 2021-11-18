@@ -1,11 +1,11 @@
-import fields.Field
+import fields.LongField
 import helpers.binaryStringToHexString
 import helpers.toBin
 
 abstract class BasePacket {
     abstract val name: String
     abstract val alternativeName: String
-    abstract fun fieldsDesc(): List<Field>
+    abstract fun fieldsDesc(): List<LongField>
 
     var payload: BasePacket? = null
 
@@ -21,17 +21,18 @@ abstract class BasePacket {
         var sum = 0
         frameFields.forEach {
             val byteArrayString = byteArray.toBin().subSequence(sum, sum + it.second).toString()
-            var numberFromByteArray: Any
-            try {
-                numberFromByteArray = byteArrayString.toInt(radix = 2)
+            val numberFromByteArray: Any = try {
+                byteArrayString.toInt(radix = 2)
             } catch (ex: NumberFormatException) {
-                numberFromByteArray = byteArrayString.toLong(radix = 2)
+                byteArrayString.toLong(radix = 2)
             }
 
             try {
                 this.setAttr(it.first!!, numberFromByteArray)
             } catch (ex: IllegalArgumentException) {
-                println(ex)
+                throw IllegalArgumentException(
+                    "Cannot set ${it.first}: $byteArrayString for ${this.name}"
+                )
             }
             sum += it.second
         }
@@ -67,7 +68,7 @@ abstract class BasePacket {
         return this
     }
 
-    fun field(lookupName: String): Field? {
+    fun field(lookupName: String): LongField? {
         return this.fieldsDesc().firstOrNull {
             it.name == lookupName
         }
@@ -155,10 +156,16 @@ abstract class BasePacket {
     open fun postBuild() {}
 
     fun bin(): String {
+        /*
+        Return binary value ex. 000000001
+         */
         return calculateHeader()
     }
 
     fun hex(): String {
+        /*
+        Return hex value ex. FFFF
+         */
         return calculateHeader().binaryStringToHexString()
     }
 

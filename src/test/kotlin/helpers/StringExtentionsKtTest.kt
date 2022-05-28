@@ -33,6 +33,15 @@ internal class StringExtentionsKtTest {
     }
 
     @Test
+    fun `string ip to long ip value`() {
+        val ip = "192.168.100.200"
+        assertEquals(
+            3232261320,
+            ip.ipToLong()
+        )
+    }
+
+    @Test
     fun binaryStringToHexString() {
         val binaryString = "11110000"
         assertEquals(

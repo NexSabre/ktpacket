@@ -14,7 +14,7 @@ fun String.ipToLong(): Long {
     var powIt = 3
     val ret = this.split(".").map {
         val result = it.toDouble() * 256.0.pow(powIt)
-        powIt -= powIt
+        powIt -= 1
         return@map result
     }
     return ret.sum().toLong()
